@@ -15,7 +15,7 @@ comanda = {
 }
  
 
-print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda")
+print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
 escolha = int(input("Faça sua escolha: ")) 
 
 
@@ -33,7 +33,7 @@ while escolha != 0:
         for e in cardapio:
             print('{0}: {1:.2f}R$'.format(e,cardapio[e]))
         
-        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda")
+        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
         escolha = int(input("Faça sua escolha: ")) 
     
     #adicionar item
@@ -55,7 +55,7 @@ while escolha != 0:
             comanda[produto] += quantidade
             print("Quantidade atual de {1}: {0}".format(comanda[produto],produto))
         
-        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda")
+        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
         escolha = int(input("Faça sua escolha: ")) 
     
     #remover item
@@ -94,7 +94,7 @@ while escolha != 0:
             
             
             
-        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda")
+        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
         escolha = int(input("Faça sua escolha: "))
         
     #imprimir comanda
@@ -104,10 +104,38 @@ while escolha != 0:
         for i in comanda:
             print('{0}: {1}'.format(i,comanda[i]))
         
-        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda")
+        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
         escolha = int(input("Faça sua escolha: "))
+        
+    #edicao de cardapio
+    if escolha == 5:
+        print("1 - adicionar item ao cardapio\n2 - remover item do cardapio\n3 - alterar preco de um item")
+        escolha_2 = int(input("Faça sua escolha: "))
+        
+        if escolha_2 == 1:
+            nome_item = input("Escreva o nome do item que sera adicionado: ")
+            while nome_item in cardapio:
+                print("este item ja esta no cardapio")
+                nome_item = input("Escreva o nome do item que sera adicionado: ")
+                
+            valor_item = int(input("Escreva o preço do item que sera adicionado: "))
             
+            while valor_item < 0:
+                valor_item = int(input("Escreva o preço do item que sera adicionado: "))
             
+            else:
+                cardapio[nome_item] = valor_item
+        
+        
+        if escolha_2 == 2:
+            nome_rem = input("Escreva o item que deseja remover do cardapio: ")
+            del cardapio[nome_rem]
+        
+        '''if escolha_2 == 3:'''
+            
+        print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
+        escolha = int(input("Faça sua escolha: "))
+        
             
                     
                     

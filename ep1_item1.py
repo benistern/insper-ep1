@@ -5,10 +5,17 @@ Created on Wed Oct  3 14:29:46 2018
 
 @author: benistern
 """
-cardapio = {
+
+import json
+with open ('cardapio.json','r') as arquivo:
+    texto = arquivo.read()
+cardapio = json.loads(texto)
+
+
+'''cardapio = {
     'jujuba': 10,
 'pipoca gourmet': 60, 'suco de tomate': 15, 'água': 2.5,
-}
+}'''
 comanda = {
     'água': 3,
     'jujuba': 5,
@@ -131,14 +138,27 @@ while escolha != 0:
             nome_rem = input("Escreva o item que deseja remover do cardapio: ")
             del cardapio[nome_rem]
         
-        '''if escolha_2 == 3:'''
+        if escolha_2 == 3:
+            item_alterado = input("Escreva um item para o seu valor ser alterado: ")
+            while item_alterado not in cardapio:
+                print("Este item nao esta no cardapio ainda")
+                item_alterado = input("Escreva um item para o seu valor ser alterado: ")
+            novo_valor = float(input("Escreva o novo valor do item: "))
+            while novo_valor < 0:
+                print("O item nao pode ter um valor negativo")
+                novo_valor = float(input("Escreva o novo valor do item: "))
+            
+            cardapio[item_alterado] = novo_valor
+            print("Valor do item {0} foi alterado para {1}R$".format(item_alterado, novo_valor))
             
         print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
         escolha = int(input("Faça sua escolha: "))
         
             
-                    
-                    
+novo_cardapio = json.dumps(cardapio, sort_keys = True, indent = 4)
+with open ('cardapio.json','w') as arquivo:
+    arquivo.write(novo_cardapio)
+   
                     
                     
                     

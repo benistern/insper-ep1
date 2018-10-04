@@ -14,11 +14,11 @@ cardapio = json.loads(texto)
 
 '''cardapio = {
     'jujuba': 10,
-'pipoca gourmet': 60, 'suco de tomate': 15, 'água': 2.5,
+'pipoca gourmet': 60, 'suco de tomate': 15, 'agua': 2.5,
 }'''
 comanda = {
-    'água': 3,
-    'jujuba': 5,
+    'agua': 3,
+    'jujuba': 1,
 }
  
 
@@ -28,7 +28,7 @@ escolha = int(input("Faça sua escolha: "))
 
 
 if escolha == 0:
-        print("Até mais")
+    print("Até mais")
     
 
 while escolha != 0:
@@ -107,9 +107,15 @@ while escolha != 0:
     #imprimir comanda
     if escolha == 4:
         print("A comanda possui os seguintes itens:")
-        
+        total = 0
         for i in comanda:
             print('{0}: {1}'.format(i,comanda[i]))
+            print("preço unitário: R$ {0}\npreço total: R$ {1}".format(cardapio[i],cardapio[i]*comanda[i]))
+            total += cardapio[i]*comanda[i]
+        print("TOTAL: R$ {0}".format(total))
+        totalc = total + total/10
+        print("TOTAL (c/ 10%): R$ {0}".format(totalc))
+            
         
         print("Comanda eletrônica\n0 - sair\n1 - imprimir cardápio\n2 - adicionar item\n3 - remover item\n4 - imprimir comanda\n5 - edição do cardapio")
         escolha = int(input("Faça sua escolha: "))
@@ -125,10 +131,10 @@ while escolha != 0:
                 print("este item ja esta no cardapio")
                 nome_item = input("Escreva o nome do item que sera adicionado: ")
                 
-            valor_item = int(input("Escreva o preço do item que sera adicionado: "))
+            valor_item = float(input("Escreva o preço do item que sera adicionado: "))
             
             while valor_item < 0:
-                valor_item = int(input("Escreva o preço do item que sera adicionado: "))
+                valor_item = float(input("Escreva o preço do item que sera adicionado: "))
             
             else:
                 cardapio[nome_item] = valor_item
@@ -158,7 +164,6 @@ while escolha != 0:
 novo_cardapio = json.dumps(cardapio, sort_keys = True, indent = 4)
 with open ('cardapio.json','w') as arquivo:
     arquivo.write(novo_cardapio)
-   
                     
                     
                     
